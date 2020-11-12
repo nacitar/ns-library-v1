@@ -82,12 +82,11 @@ The following compilers should work:
 			brew install llvm
 	</details>
 
-  * [Visual Studio 2017 or higher](https://visualstudio.microsoft.com/)
+  * [Visual Studio 2019 or higher](https://visualstudio.microsoft.com/)
 	<details>
 	<summary>Install command + Environment setup</summary>
 
-	On Windows, you need to install Visual Studio because of the SDK and libraries that ship with it 
-	(the minimum compiler version is 19.15, which ships with version 15.8 of the IDE).
+	On Windows, you need to install Visual Studio 2019 because of the SDK and libraries that ship with it.
 
   	Visual Studio IDE - 2019 Community (installs Clang too):
 		
@@ -391,7 +390,7 @@ Choose "Visual Studio 16 2019" as the generator. To tell Visual studio to use `c
 #### **Configure via ccmake**:
 with the Cmake Curses Dialog Command Line tool:  
 
-    ccmake .
+    ccmake -S . -B ./build
 
 Once `ccmake` has finished setting up, press 'c' to configure the project, 
 press 'g' to generate, and 'q' to quit.
@@ -404,7 +403,7 @@ project (all targets):
 
 For Visual Studio, give the build configuration (Release, RelWithDeb, Debug, etc) like the following:
 
-	cmake --build ./build -- /p:configuration=Release
+    cmake --build ./build -- /p:configuration=Release
 
 ## Troubleshooting
 
