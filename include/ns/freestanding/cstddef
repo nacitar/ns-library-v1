@@ -1,0 +1,38 @@
+#ifndef INCLUDE_NS_FREESTANDING_STD_CSTDDEF_
+#define INCLUDE_NS_FREESTANDING_STD_CSTDDEF_
+
+// If NS_FREESTANDING_STD_NO_C_HEADERS is defined, no C headers will be used
+// and as a consequence offsetof() will not be defined because it cannot be
+// implemented in standard c++.  Any non-standard approaches are left to the
+// user to implement. A sane default is used for max_align_t, assuming no
+// extended numeric types.  If this is undesirable, one can define
+// the mac
+
+// TODO: byte type
+
+#ifdef NS_FREESTANDING_STD_NO_C_HEADERS
+#   ifndef NULL
+#   define NULL nullptr
+#   endif  // NULL
+#else
+#   include <stddef.h>  // NULL, offsetof, max_align_t
+#endif  // NS_FREESTANDING_STD_NO_C_HEADERS
+
+namespace std {
+    using nullptr_t = decltype(nullptr);
+    using size_t = decltype(sizeof(nullptr_t));
+    using ptrdiff_t = decltype(static_cast<char*>(nullptr) - static_cast<char*>(nullptr));
+
+#ifndef NS_FREESTANDING_STD_NO_C_HEADERS
+    using max_align_t = ::max_align_t;
+#else
+    class max_align_t {
+        union {
+            long double _detail_ld;
+            long long _detail_ll;
+            void* _detail_vp;
+        };
+    };
+#endif  // NS_FREESTANDING_STD_NO_C_HEADERS
+}
+#endif  // INCLUDE_NS_FREESTANDING_STD_CSTDDEF_
