@@ -1,3 +1,5 @@
+# NOTE: THIS IS NOT EVEN REMOTELY DONE, but will be a C++20 reimplementaton of https://github.com/nacitar/nx
+
 # cpp_starter_project
 
 [![codecov](https://codecov.io/gh/lefticus/cpp_starter_project/branch/master/graph/badge.svg)](https://codecov.io/gh/lefticus/cpp_starter_project)
